@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072397871055",
+    "project_id": "cichat-d37a3",
+    "storage_bucket": "cichat-d37a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072397871055:android:3967a125bb563ec0e3d4ba",
+        "android_client_info": {
+          "package_name": "com.example.cichat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072397871055-lv15b2ite7on6nvvpognmcsp7uqtqbth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV1yyWUZLFc5ZWcBzFqFCg0MgeCzxRSy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072397871055-lv15b2ite7on6nvvpognmcsp7uqtqbth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
