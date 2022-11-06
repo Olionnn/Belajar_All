@@ -44,7 +44,11 @@ class AuthRepository {
                 }
             }.await()
     }
+    fun logout() = {
+        Firebase.auth
+            .signOut()
 
+    }
 
 
 

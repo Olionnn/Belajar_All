@@ -1,30 +1,32 @@
 package com.example.cichat
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.navigation.NavHostController
 import com.example.cichat.login.LoginScreen
-import com.example.cichat.login.PrevSignupScreen
 import com.example.cichat.login.RegisterScreen
-import com.example.cichat.login.loginViewModel
-import java.security.AccessController
-import androidx.navigation.NavHost
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+//import androidx.navigation.
+import androidx.navigation.compose.rememberNavController
 import com.example.cichat.home.Home
+import com.example.cichat.login.loginViewModel
 
 enum class LoginRoutes{
     Signup,
-    SignIn
+    SignIn,
+//    LogOut,
 }
 
 enum class HomeRoutes{
     Home,
-    Detail
+    Detail,
+    LogOut
 }
 
 @Composable
-fun Navigation(
+fun mainNav(
     navController: NavHostController = rememberNavController(),
-    loginViewModel: loginViewModel
+    loginViewModel: loginViewModel,
 ) {
     NavHost(
         navController = navController,
@@ -39,7 +41,9 @@ fun Navigation(
                         inclusive = true
                     }
                 }
-            }) {
+            },
+                loginViewModel = loginViewModel
+            ) {
                 navController.navigate(LoginRoutes.Signup.name){
                     launchSingleTop = true
                     popUpTo(LoginRoutes.SignIn.name){
@@ -51,7 +55,6 @@ fun Navigation(
 
         composable(route = LoginRoutes.Signup.name){
             RegisterScreen(onNavToHomePage = {
-                onNavToHomePage = {
                     navController.navigate(HomeRoutes.Home.name){
                         navController.navigate(HomeRoutes.Home.name){
                             popUpTo(LoginRoutes.Signup.name){
@@ -59,23 +62,30 @@ fun Navigation(
                             }
                         }
                     }
-                }
-            }) {
+            },
+                loginViewModel = loginViewModel,
+                ) {
                 navController.navigate(LoginRoutes.SignIn.name)
 
             }
         }
 
         composable(route = HomeRoutes.Home.name){
-            Home()
+            Home(logout = {navController.navigate(LoginRoutes.SignIn.name) {
+                popUpTo(HomeRoutes.Home.name)
+            } })
         }
+
+//        composable(route = HomeRoutes.LogOut.name){
+//            Home(logout = {navController.navigate(LoginRoutes.SignIn.name)}, loginViewModel = loginViewModel,)
+//        }
     }
     
     
     
     
     
-    
+
 }
 
 

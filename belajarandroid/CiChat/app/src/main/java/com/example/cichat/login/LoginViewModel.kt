@@ -21,6 +21,9 @@ class loginViewModel(
     var loginUiState by mutableStateOf(LoginUiState())
         private set
 
+    var loguotState by mutableStateOf(LoginUiState())
+        private set
+
     fun onUserNameChange(userName: String){
         loginUiState = loginUiState.copy(userName = userName)
     }
@@ -31,7 +34,7 @@ class loginViewModel(
         loginUiState = loginUiState.copy(userNameSignUp = userName)
     }
     fun onPasswordChangeSignup(password: String){
-        loginUiState = loginUiState.copy(password = password)
+        loginUiState = loginUiState.copy(passwordSignUp = password)
     }
     fun onConfirmPasswordChange(password: String){
         loginUiState = loginUiState.copy(confirmPasswordSignUp = password)
@@ -130,7 +133,9 @@ class loginViewModel(
             loginUiState = loginUiState.copy(isLoading = false)
         }
     }
-
+    fun LogOut() = viewModelScope.launch {
+        repository.logout()
+    }
 
 
 }
