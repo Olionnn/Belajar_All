@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">CiChat</string>
+    <string name="login">Login</string>
+    <string name="sign_in_with_email"> Sign In With Email?</string>
+    <string name="welcome">Welcome </string>
+    <string name="back_icon">Back</string>>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="create">Create</string>
+    <string name="welcome_logged_in">Wellcombek</string>
+    <string name="log_out">Log Out</string>
+    <string name="Register">Register</string>
+    <string name="confirmpassword">Confirm Password</string>
 </resources>
