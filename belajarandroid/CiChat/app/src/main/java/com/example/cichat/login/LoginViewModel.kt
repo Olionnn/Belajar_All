@@ -239,8 +239,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     fun isValidEmailAndPassword() : Boolean {
         if (userEmail.value.isBlank() || password.value.isBlank()) {
             return false
-        }
-        if (password.value == confirmpassword.value){
+        }else if (password.value == confirmpassword.value){
         return true
         } else {
             _error.value = "Password not match"

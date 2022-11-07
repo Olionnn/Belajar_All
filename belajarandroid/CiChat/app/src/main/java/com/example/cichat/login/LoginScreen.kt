@@ -3,9 +3,8 @@ package com.example.cichat.login
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,10 +24,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.cichat.R
+import com.example.cichat.ui.theme.CiChatTheme
 
 private const val TAG = "LoginScreen"
 
@@ -50,19 +53,53 @@ fun LoginScreen(
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val buttonWidtd = 300.dp
+        Text(
+            text = "Welcome To CiChat",
+            modifier = Modifier
+                .fillMaxWidth()
+                ,
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colors.primary,
+//            textDecoration = MaterialTheme.colors.primary
+        )
+//        val buttonWidtd = Modifier.fillMaxWidth()
 
         Spacer(modifier = Modifier.height(18.dp))
 
         if (viewModel.error.value.isNotBlank()) {
             ErrorField(viewModel)
         }
-        SignInWithEmailButton(buttonWidtd, emailLoginClick)
-        RegisterWithEmailButton(buttonWidtd, registerCreateClick)
+        Card(
+            modifier = Modifier
+                .background(MaterialTheme.colors.secondary)
+                .fillMaxWidth()
+//                .fillMaxHeight(1f)
+                .padding(15.dp)
+                .clip(
+                    RoundedCornerShape(15.dp, 15.dp)
+                )
+                .shadow(5.dp),
+        ) {
+            Column(
+                modifier = Modifier.background(MaterialTheme.colors.secondary)
+            ) {
+            SignInWithEmailButton(emailLoginClick)
+
+            RegisterWithEmailButton(registerCreateClick)
+            }
+        }
+
 
 //        SignInWithGoogleButton(buttonWidth, viewModel)
     }
 }
+
+
+
+
+
+
+
 //@Composable
 //fun RegisterScreen(
 //    registerCreateClick: () -> Unit,
@@ -110,10 +147,10 @@ fun ErrorField(viewModel: LoginViewModel) {
 }
 
 @Composable
-fun RegisterWithEmailButton(buttonWidtd: Dp, registerCreateClick: () -> Unit) {
+fun RegisterWithEmailButton(registerCreateClick: () -> Unit) {
     OutlinedButton(
         onClick = { registerCreateClick() },
-        modifier = Modifier.width(buttonWidtd),
+        modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(id = R.color.fui_bgEmail),
             contentColor = colorResource(id = R.color.white)
@@ -145,7 +182,7 @@ fun RegisterButtonText(@StringRes stringResourceId: Int) {
         textAlign = TextAlign.End,
         style = MaterialTheme.typography.button,
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+            .padding(start = 5.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
             .fillMaxWidth()
     )
 }
@@ -160,10 +197,10 @@ fun RegisterButtonIcon(@DrawableRes painterResourceId: Int) {
 }
 
 @Composable
-fun SignInWithEmailButton(buttonWidth: Dp, emailLoginClick: () -> Unit) {
+fun SignInWithEmailButton(emailLoginClick: () -> Unit) {
     OutlinedButton(
         onClick = { emailLoginClick() },
-        modifier = Modifier.width(buttonWidth),
+        modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(id = R.color.fui_bgEmail),
             contentColor =  colorResource(id = R.color.white)
