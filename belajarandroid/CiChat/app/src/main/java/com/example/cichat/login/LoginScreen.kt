@@ -1,6 +1,8 @@
 package com.example.cichat.login
 
 
+import android.graphics.Paint.Align
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.*
@@ -26,11 +28,20 @@ import com.google.android.gms.common.api.ApiException
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.RootGroupName
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cichat.R
+import com.example.cichat.emailLoginPage
 import com.example.cichat.ui.theme.CiChatTheme
 
 private const val TAG = "LoginScreen"
@@ -53,47 +64,55 @@ fun LoginScreen(
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = "Welcome To CiChat",
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .fillMaxHeight()
+                .padding(15.dp),
+
+        ) {
+            Text(
+                text = "Welcome To CiChat",
+                modifier = Modifier
+                    .fillMaxWidth()
                 ,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colors.primary,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.primary,
 //            textDecoration = MaterialTheme.colors.primary
-        )
+            )
 //        val buttonWidtd = Modifier.fillMaxWidth()
 
-        Spacer(modifier = Modifier.height(18.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
-        if (viewModel.error.value.isNotBlank()) {
-            ErrorField(viewModel)
-        }
-        Card(
-            modifier = Modifier
-                .background(MaterialTheme.colors.secondary)
-                .fillMaxWidth()
+            if (viewModel.error.value.isNotBlank()) {
+                ErrorField(viewModel)
+            }
+            Card(
+                modifier = Modifier
+                    .background(MaterialTheme.colors.secondary)
+                    .fillMaxWidth()
 //                .fillMaxHeight(1f)
-                .padding(15.dp)
-                .clip(
-                    RoundedCornerShape(15.dp, 15.dp)
-                )
-                .shadow(5.dp),
-        ) {
-            Column(
-                modifier = Modifier.background(MaterialTheme.colors.secondary)
+                    .padding(15.dp)
+                    .clip(
+                        RoundedCornerShape(15.dp, 15.dp)
+                    )
+                    .shadow(5.dp),
             ) {
-            SignInWithEmailButton(emailLoginClick)
+                Column(
+                    modifier = Modifier.background(MaterialTheme.colors.secondary)
+                ) {
+                    SignInWithEmailButton(emailLoginClick)
 
-            RegisterWithEmailButton(registerCreateClick)
+                    RegisterWithEmailButton(registerCreateClick)
+                }
             }
         }
+
 
 
 //        SignInWithGoogleButton(buttonWidth, viewModel)
     }
 }
-
 
 
 
@@ -150,7 +169,9 @@ fun ErrorField(viewModel: LoginViewModel) {
 fun RegisterWithEmailButton(registerCreateClick: () -> Unit) {
     OutlinedButton(
         onClick = { registerCreateClick() },
-        modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 5.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(id = R.color.fui_bgEmail),
             contentColor = colorResource(id = R.color.white)
@@ -200,7 +221,9 @@ fun RegisterButtonIcon(@DrawableRes painterResourceId: Int) {
 fun SignInWithEmailButton(emailLoginClick: () -> Unit) {
     OutlinedButton(
         onClick = { emailLoginClick() },
-        modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 5.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(id = R.color.fui_bgEmail),
             contentColor =  colorResource(id = R.color.white)
@@ -242,6 +265,210 @@ fun LoginButtonText(@StringRes stringResourceId: Int) {
             .fillMaxWidth()
     )
 }
+// New Login Screen
+@Composable
+fun welcomeScreen() {
+    Column(
+        modifier = Modifier.background(MaterialTheme.colors.primary),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Box(modifier = Modifier
+                .fillMaxWidth()
+                ){
+                Text(
+                    text = "Welcome To CiChat",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White),
+                    modifier = Modifier.fillMaxWidth())
+            }
+            Spacer(modifier = Modifier.padding(20.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+//                    .padding(50.dp)
+                    .shadow(6.dp, RoundedCornerShape(10), true)
+                    .padding(10.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(MaterialTheme.colors.secondary)
+                    .fillMaxHeight(0.5f)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Box(
+                        Modifier
+                            .padding(horizontal = 30.dp, vertical = 10.dp)
+                            .fillMaxWidth()
+//                            .fillMaxHeight(0.2f)
+                            .shadow(4.dp, RoundedCornerShape(10), true)
+                            .padding(3.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.White),
+                    ){
+                        Text(
+                            text = "Login Via Email",
+                            style = TextStyle(
+                                Color.Black,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.dp, bottom = 10.dp)
+                        )
+                    }
+                    Box(
+                        Modifier
+                            .padding(horizontal = 30.dp, vertical = 10.dp)
+                            .fillMaxWidth()
+//                            .fillMaxHeight(0.2f)
+                            .shadow(4.dp, RoundedCornerShape(10), true)
+                            .padding(3.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.White),
+                    ){
+                        Text(
+                            text = "Login Via Facebook",
+                            style = TextStyle(
+                                Color.Black,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.dp, bottom = 10.dp)
+                        )
+                    }
+                    Box(
+                        Modifier
+                            .padding(horizontal = 30.dp, vertical = 10.dp)
+                            .fillMaxWidth()
+//                            .fillMaxHeight(0.2f)
+                            .shadow(4.dp, RoundedCornerShape(10), true)
+                            .padding(3.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.White),
+                    ){
+                        Text(
+                            text = "Login Via Gmail",
+                            style = TextStyle(
+                                Color.Black,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.dp, bottom = 10.dp)
+                        )
+                    }
+                    Box(
+                        Modifier
+                            .padding(horizontal = 30.dp, vertical = 10.dp)
+                            .fillMaxWidth()
+//                            .fillMaxHeight(0.2f)
+                            .shadow(4.dp, RoundedCornerShape(10), true)
+                            .padding(3.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.White),
+                    ){
+                        Text(
+                            text = "Login Via Number Phone",
+                            style = TextStyle(
+                                Color.Black,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center,
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.dp, bottom = 10.dp)
+                        )
+                    }
+                    Box(
+                        Modifier
+                            .padding(horizontal = 30.dp, vertical = 10.dp)
+                            .fillMaxWidth()
+//                            .fillMaxHeight(0.2f)
+                            .shadow(4.dp, RoundedCornerShape(10), clip = true)
+                            .padding(3.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.White),
+                    ){
+                        Text(
+                            text = "Doesnt Have An Account?",
+                            style = TextStyle(
+                                Color.Black,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.dp, bottom = 10.dp)
+                        )
+                    }
+
+                }
+            }
+            Box(modifier = Modifier
+                .fillMaxWidth()
+//                .fillMaxHeight(0.2f)
+                .background(Color.Gray)) {
+                Text(
+                    text = "Error!!",
+                    style = TextStyle(
+                        color = Color.Red,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        fontSize = 20.sp
+                    ),
+                    modifier = Modifier
+                        .padding(top = 10.dp, bottom = 10.dp)
+                        .fillMaxWidth()
+                )
+            }
+
+        }
+    }
+}
+
+@Preview(name = "welcome", showSystemUi = true )
+@Composable
+fun welcomePreview() {
+    welcomeScreen()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
