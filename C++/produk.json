@@ -1,0 +1,34 @@
+{
+    "produk" : [
+        {
+            "no" : "1",
+            "nama" : "Pepsodent",
+            "harga" : 3000,
+            "stok" : 80
+        },
+        {
+            "no" : "2",
+            "nama" : "Sabuk",
+            "harga" : 4500,
+            "stok" : 80
+        },
+        {
+            "no" : "3",
+            "nama" : "Kopi Hitam",
+            "harga" : 1500,
+            "stok" : 80
+        },
+        {
+            "no" : "4",
+            "nama" : "Rokok Surya",
+            "harga" : 12000,
+            "stok" : 80
+        },
+        {
+            "no" : "5",
+            "nama" : "Nabati",
+            "harga" : 1000,
+            "stok" : 80
+        }
+    ]
+}

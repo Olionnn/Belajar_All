@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "cmake.sourceDirectory": "${workspaceFolder}/vcpkg/downloads/tools/cmake-3.25.0-windows/cmake-3.25.0-windows-i386/share/cmake-3.25/Modules/FortranCInterface/Verify"
+}

@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.RootGroupName
+import androidx.compose.ui.layout.ModifierInfo
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,81 +47,9 @@ import com.example.cichat.ui.theme.CiChatTheme
 
 private const val TAG = "LoginScreen"
 
-@Composable
-fun LoginScreen(
-    emailLoginClick: () -> Unit,
-    registerCreateClick: () -> Unit,
-    viewModel: LoginViewModel = hiltViewModel()
-) {
-//    val loginUiState = LoginViewModel?.loginUiState
-//    val isError = loginUiState?.loginError != null
-//    val context = LocalContext.current
-
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(24.dp)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(18.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(15.dp),
-
-        ) {
-            Text(
-                text = "Welcome To CiChat",
-                modifier = Modifier
-                    .fillMaxWidth()
-                ,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colors.primary,
-//            textDecoration = MaterialTheme.colors.primary
-            )
-//        val buttonWidtd = Modifier.fillMaxWidth()
-
-            Spacer(modifier = Modifier.height(18.dp))
-
-            if (viewModel.error.value.isNotBlank()) {
-                ErrorField(viewModel)
-            }
-            Card(
-                modifier = Modifier
-                    .background(MaterialTheme.colors.secondary)
-                    .fillMaxWidth()
-//                .fillMaxHeight(1f)
-                    .padding(15.dp)
-                    .clip(
-                        RoundedCornerShape(15.dp, 15.dp)
-                    )
-                    .shadow(5.dp),
-            ) {
-                Column(
-                    modifier = Modifier.background(MaterialTheme.colors.secondary)
-                ) {
-                    SignInWithEmailButton(emailLoginClick)
-
-                    RegisterWithEmailButton(registerCreateClick)
-                }
-            }
-        }
-
-
-
-//        SignInWithGoogleButton(buttonWidth, viewModel)
-    }
-}
-
-
-
-
-
-
 //@Composable
-//fun RegisterScreen(
+//fun LoginScreen(
+//    emailLoginClick: () -> Unit,
 //    registerCreateClick: () -> Unit,
 //    viewModel: LoginViewModel = hiltViewModel()
 //) {
@@ -136,138 +65,220 @@ fun LoginScreen(
 //        verticalArrangement = Arrangement.spacedBy(18.dp),
 //        horizontalAlignment = Alignment.CenterHorizontally,
 //    ) {
-//        val buttonWidtd = 300.dp
+//        Column(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxHeight()
+//                .padding(15.dp),
 //
-//        Spacer(modifier = Modifier.height(18.dp))
+//        ) {
+//            Text(
+//                text = "Welcome To CiChat",
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                ,
+//                textAlign = TextAlign.Center,
+//                color = MaterialTheme.colors.primary,
+////            textDecoration = MaterialTheme.colors.primary
+//            )
+////        val buttonWidtd = Modifier.fillMaxWidth()
 //
-//        if (viewModel.error.value.isNotBlank()) {
-//            ErrorField(viewModel)
+//            Spacer(modifier = Modifier.height(18.dp))
+//
+//            if (viewModel.error.value.isNotBlank()) {
+//                ErrorField(viewModel)
+//            }
+//            Card(
+//                modifier = Modifier
+//                    .background(MaterialTheme.colors.secondary)
+//                    .fillMaxWidth()
+////                .fillMaxHeight(1f)
+//                    .padding(15.dp)
+//                    .clip(
+//                        RoundedCornerShape(15.dp, 15.dp)
+//                    )
+//                    .shadow(5.dp),
+//            ) {
+//                Column(
+//                    modifier = Modifier.background(MaterialTheme.colors.secondary)
+//                ) {
+//                    SignInWithEmailButton(emailLoginClick)
+//
+//                    RegisterWithEmailButton(registerCreateClick)
+//                }
+//            }
 //        }
+//
+//
 //
 ////        SignInWithGoogleButton(buttonWidth, viewModel)
 //    }
 //}
-
-
+//
+//
+//
+//
+//
+//
+////@Composable
+////fun RegisterScreen(
+////    registerCreateClick: () -> Unit,
+////    viewModel: LoginViewModel = hiltViewModel()
+////) {
+//////    val loginUiState = LoginViewModel?.loginUiState
+//////    val isError = loginUiState?.loginError != null
+//////    val context = LocalContext.current
+////
+////    Column(
+////        modifier = Modifier
+////            .verticalScroll(rememberScrollState())
+////            .padding(24.dp)
+////            .fillMaxSize(),
+////        verticalArrangement = Arrangement.spacedBy(18.dp),
+////        horizontalAlignment = Alignment.CenterHorizontally,
+////    ) {
+////        val buttonWidtd = 300.dp
+////
+////        Spacer(modifier = Modifier.height(18.dp))
+////
+////        if (viewModel.error.value.isNotBlank()) {
+////            ErrorField(viewModel)
+////        }
+////
+//////        SignInWithGoogleButton(buttonWidth, viewModel)
+////    }
+////}
+//
+//
+////@Composable
+////fun SignInWithGoogleButton(buttonWidth: Any, viewModel: LoginViewModel) {
+////
+////}
+//
 //@Composable
-//fun SignInWithGoogleButton(buttonWidth: Any, viewModel: LoginViewModel) {
+//fun ErrorField(viewModel: LoginViewModel) {
+//    Text(
+//        text = viewModel.error.value,
+//        modifier = Modifier.fillMaxWidth(),
+//        color = Color.Red,
+//        fontSize = 20.sp,
+//        fontWeight = FontWeight.Bold
+//    )
+//}
+//
+//@Composable
+//fun RegisterWithEmailButton(registerCreateClick: () -> Unit) {
+//    OutlinedButton(
+//        onClick = { registerCreateClick() },
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(top = 5.dp),
+//        colors = ButtonDefaults.buttonColors(
+//            backgroundColor = colorResource(id = R.color.fui_bgEmail),
+//            contentColor = colorResource(id = R.color.white)
+//        )
+//    ) {
+//        RegisterButtonRow(iconId = R.drawable.ic_baseline_create_24, buttonTextId= R.string.Register)
+//    }
 //
 //}
+//
+//@Composable
+//fun RegisterButtonRow(@DrawableRes iconId: Int, @StringRes buttonTextId: Int) {
+//    Row(
+//        horizontalArrangement = Arrangement.Start,
+//        verticalAlignment = Alignment.CenterVertically,
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(start = 40.dp)
+//    ) {
+//        RegisterButtonIcon(iconId)
+//        RegisterButtonText(buttonTextId)
+//    }
+//}
+//
+//@Composable
+//fun RegisterButtonText(@StringRes stringResourceId: Int) {
+//    Text(
+//        text = stringResource(stringResourceId),
+//        textAlign = TextAlign.End,
+//        style = MaterialTheme.typography.button,
+//        modifier = Modifier
+//            .padding(start = 5.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+//            .fillMaxWidth()
+//    )
+//}
+//
+//@Composable
+//fun RegisterButtonIcon(@DrawableRes painterResourceId: Int) {
+//    Icon(
+//        tint = Color.Unspecified,
+//        painter = painterResource(id = painterResourceId),
+//        contentDescription = null
+//    )
+//}
+//
+//@Composable
+//fun SignInWithEmailButton(emailLoginClick: () -> Unit) {
+//    OutlinedButton(
+//        onClick = { emailLoginClick() },
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(top = 5.dp),
+//        colors = ButtonDefaults.buttonColors(
+//            backgroundColor = colorResource(id = R.color.fui_bgEmail),
+//            contentColor =  colorResource(id = R.color.white)
+//        )
+//    ) {
+//        SignInButtonRow(iconId = R.drawable.ic_baseline_email_24, buttonTextId = R.string.sign_in_with_email)
+//    }
+//}
+//
+//@Composable
+//fun SignInButtonRow(@DrawableRes iconId: Int, @StringRes buttonTextId: Int) {
+//    Row(
+//        horizontalArrangement = Arrangement.Start,
+//        verticalAlignment = Alignment.CenterVertically,
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(start = 40.dp)
+//    ) {
+//        LoginButtonIcon(iconId)
+//        LoginButtonText(buttonTextId)
+//    }
+//}
+//@Composable
+//fun LoginButtonIcon(@DrawableRes painterResourceId: Int) {
+//    Icon(
+//        tint = Color.Unspecified,
+//        painter = painterResource(painterResourceId),
+//        contentDescription = null
+//    )
+//}
+//@Composable
+//fun LoginButtonText(@StringRes stringResourceId: Int) {
+//    Text(
+//        text = stringResource(stringResourceId),
+//        textAlign = TextAlign.Start,
+//        style = MaterialTheme.typography.button,
+//        modifier = Modifier
+//            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+//            .fillMaxWidth()
+//    )
+//}
 
-@Composable
-fun ErrorField(viewModel: LoginViewModel) {
-    Text(
-        text = viewModel.error.value,
-        modifier = Modifier.fillMaxWidth(),
-        color = Color.Red,
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold
-    )
-}
 
-@Composable
-fun RegisterWithEmailButton(registerCreateClick: () -> Unit) {
-    OutlinedButton(
-        onClick = { registerCreateClick() },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 5.dp),
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = colorResource(id = R.color.fui_bgEmail),
-            contentColor = colorResource(id = R.color.white)
-        )
-    ) {
-        RegisterButtonRow(iconId = R.drawable.ic_baseline_create_24, buttonTextId= R.string.Register)
-    }
-
-}
-
-@Composable
-fun RegisterButtonRow(@DrawableRes iconId: Int, @StringRes buttonTextId: Int) {
-    Row(
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 40.dp)
-    ) {
-        RegisterButtonIcon(iconId)
-        RegisterButtonText(buttonTextId)
-    }
-}
-
-@Composable
-fun RegisterButtonText(@StringRes stringResourceId: Int) {
-    Text(
-        text = stringResource(stringResourceId),
-        textAlign = TextAlign.End,
-        style = MaterialTheme.typography.button,
-        modifier = Modifier
-            .padding(start = 5.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-            .fillMaxWidth()
-    )
-}
-
-@Composable
-fun RegisterButtonIcon(@DrawableRes painterResourceId: Int) {
-    Icon(
-        tint = Color.Unspecified,
-        painter = painterResource(id = painterResourceId),
-        contentDescription = null
-    )
-}
-
-@Composable
-fun SignInWithEmailButton(emailLoginClick: () -> Unit) {
-    OutlinedButton(
-        onClick = { emailLoginClick() },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 5.dp),
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = colorResource(id = R.color.fui_bgEmail),
-            contentColor =  colorResource(id = R.color.white)
-        )
-    ) {
-        SignInButtonRow(iconId = R.drawable.ic_baseline_email_24, buttonTextId = R.string.sign_in_with_email)
-    }
-}
-
-@Composable
-fun SignInButtonRow(@DrawableRes iconId: Int, @StringRes buttonTextId: Int) {
-    Row(
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 40.dp)
-    ) {
-        LoginButtonIcon(iconId)
-        LoginButtonText(buttonTextId)
-    }
-}
-@Composable
-fun LoginButtonIcon(@DrawableRes painterResourceId: Int) {
-    Icon(
-        tint = Color.Unspecified,
-        painter = painterResource(painterResourceId),
-        contentDescription = null
-    )
-}
-@Composable
-fun LoginButtonText(@StringRes stringResourceId: Int) {
-    Text(
-        text = stringResource(stringResourceId),
-        textAlign = TextAlign.Start,
-        style = MaterialTheme.typography.button,
-        modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-            .fillMaxWidth()
-    )
-}
 // New Login Screen
 @Composable
-fun welcomeScreen() {
+fun LoginScreen(
+    emailLoginClick: () -> Unit,
+    registerCreateClick: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
+//    val loginUiState = LoginViewModel.oginUiState
+//    val isError = loginUiState?.loginError != null
+//    val context = LocalContext.current
+
     Column(
         modifier = Modifier.background(MaterialTheme.colors.primary),
     ) {
@@ -317,18 +328,24 @@ fun welcomeScreen() {
                             .clip(RoundedCornerShape(10.dp))
                             .background(Color.White),
                     ){
-                        Text(
-                            text = "Login Via Email",
-                            style = TextStyle(
-                                Color.Black,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 10.dp, bottom = 10.dp)
-                        )
+                        OutlinedButton(onClick = { emailLoginClick() }) {
+                            Icon(
+                                tint = Color.Unspecified,
+                                painter = painterResource(id = R.drawable.ic_baseline_email_24),
+                                contentDescription = "Sign In With Email")
+                            Text(
+                                text = "Login Via Email",
+                                style = TextStyle(
+                                    Color.Black,
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.dp, bottom = 10.dp)
+                            )
+                        }
                     }
                     Box(
                         Modifier
@@ -340,18 +357,24 @@ fun welcomeScreen() {
                             .clip(RoundedCornerShape(10.dp))
                             .background(Color.White),
                     ){
-                        Text(
-                            text = "Login Via Facebook",
-                            style = TextStyle(
-                                Color.Black,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 10.dp, bottom = 10.dp)
-                        )
+                        OutlinedButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                tint = Color.Unspecified,
+                                painter = painterResource(id = R.drawable.ic_baseline_facebook_24),
+                                contentDescription = "Sign In With Facebook")
+                            Text(
+                                text = "Login Via Facebook",
+                                style = TextStyle(
+                                    Color.Black,
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.dp, bottom = 10.dp)
+                            )
+                        }
                     }
                     Box(
                         Modifier
@@ -363,18 +386,24 @@ fun welcomeScreen() {
                             .clip(RoundedCornerShape(10.dp))
                             .background(Color.White),
                     ){
-                        Text(
-                            text = "Login Via Gmail",
-                            style = TextStyle(
-                                Color.Black,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 10.dp, bottom = 10.dp)
-                        )
+                        OutlinedButton(onClick = { /*TODO*/ }) {
+                           Icon(
+                               tint = Color.Unspecified,
+                               painter = painterResource(id = R.drawable.ic_baseline_email_24),
+                               contentDescription = "Sign In With Gmail")
+                            Text(
+                                text = "Login Via Gmail",
+                                style = TextStyle(
+                                    Color.Black,
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.dp, bottom = 10.dp)
+                            )
+                        }
                     }
                     Box(
                         Modifier
@@ -386,6 +415,12 @@ fun welcomeScreen() {
                             .clip(RoundedCornerShape(10.dp))
                             .background(Color.White),
                     ){
+                        OutlinedButton(onClick = { /*TODO*/ }) {
+                          Icon(
+                              tint = Color.Unspecified,
+                              painter = painterResource(id = R.drawable.ic_baseline_phone_24),
+                              contentDescription = "Sign In Via Number Phone"
+                          )
                         Text(
                             text = "Login Via Number Phone",
                             style = TextStyle(
@@ -398,6 +433,7 @@ fun welcomeScreen() {
                                 .fillMaxWidth()
                                 .padding(top = 10.dp, bottom = 10.dp)
                         )
+                        }
                     }
                     Box(
                         Modifier
@@ -408,29 +444,40 @@ fun welcomeScreen() {
                             .padding(3.dp)
                             .clip(RoundedCornerShape(10.dp))
                             .background(Color.White),
+
                     ){
-                        Text(
-                            text = "Doesnt Have An Account?",
-                            style = TextStyle(
-                                Color.Black,
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 10.dp, bottom = 10.dp)
-                        )
+                        OutlinedButton(onClick = { registerCreateClick() }) {
+                            Icon(
+                                tint = Color.Unspecified,
+                                painter = painterResource(id = R.drawable.ic_baseline_create_24),
+                                contentDescription = "Register"
+                            )
+                            Text(
+                                text = "Doesnt Have An Account?",
+                                style = TextStyle(
+                                    Color.Black,
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.dp, bottom = 10.dp)
+                            )
+                        }
                     }
 
                 }
             }
-            Box(modifier = Modifier
-                .fillMaxWidth()
+            if (viewModel.error.value == null) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
 //                .fillMaxHeight(0.2f)
-                .background(Color.Gray)) {
+                        .background(Color.Gray))
+
                 Text(
-                    text = "Error!!",
+                    text = viewModel.error.value,
                     style = TextStyle(
                         color = Color.Red,
                         fontWeight = FontWeight.Bold,
@@ -441,17 +488,26 @@ fun welcomeScreen() {
                         .padding(top = 10.dp, bottom = 10.dp)
                         .fillMaxWidth()
                 )
+            }else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+//                .fillMaxHeight(0.2f)
+                        .background(MaterialTheme.colors.background))
+
+            }
+
             }
 
         }
     }
-}
 
-@Preview(name = "welcome", showSystemUi = true )
-@Composable
-fun welcomePreview() {
-    welcomeScreen()
-}
+
+//@Preview(name = "welcome", showSystemUi = true )
+//@Composable
+//fun welcomePreview() {
+//    welcomeScreen()
+//}
 
 
 
