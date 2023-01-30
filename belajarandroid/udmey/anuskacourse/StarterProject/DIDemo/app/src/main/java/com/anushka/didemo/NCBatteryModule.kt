@@ -1,0 +1,16 @@
+package com.anushka.didemo
+
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+
+@Module
+abstract class NCBatteryModule {
+
+   // @Provides
+    @Binds
+    abstract fun bindNCBattery(nikelBattrey: NikelBattrey):Battery
+    //{
+//        return NikelBattrey()
+//    }
+}
