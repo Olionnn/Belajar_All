@@ -1,0 +1,26 @@
+2a60927148abd1d33b818b535e306557
+::res://::1684279636
+icon.svg::CompressedTexture2D::5256200622905964654::1683938713::1683938722::1::::<><>::
+Main.gd::GDScript::-1::1684279492::0::1::::<>Node<>::
+main.tscn::PackedScene::5896305787648005503::1684279503::0::1::::<><>::res://Main.gd<>uid://p61ue5q04enb<>uid://clwesh76p22at
+mob.gd::GDScript::-1::1683940818::0::1::::<>RigidBody2D<>::
+mob.tscn::PackedScene::1118442979835417923::1684279503::0::1::::<><>::res://mob.gd<>uid://cxpyfwhd57dvs<>uid://ck8wbgj8f6moe<>uid://d4i50nmcd55w5<>uid://ct8d1f4v31fux<>uid://bhihc27uhaa5q<>uid://ciqtw2k1o8mj7
+player.gd::GDScript::-1::1684279223::0::1::::<>Area2D<>::
+player.tscn::PackedScene::5590610388782055335::1684279503::0::1::::<><>::res://player.gd<>uid://cafbffhoqr5po<>uid://bxgc4wxuwetaf<>uid://l5tdp3l0ssca<>uid://c15gjr2yirlxc
+::res://art/::1683938748
+enemyFlyingAlt_1.png::CompressedTexture2D::6419617740672755560::1683938743::1683938748::1::::<><>::
+enemyFlyingAlt_2.png::CompressedTexture2D::5544192159835889720::1683938744::1683938748::1::::<><>::
+enemySwimming_1.png::CompressedTexture2D::9213120394682636130::1683938744::1683938748::1::::<><>::
+enemySwimming_2.png::CompressedTexture2D::6174782752421285187::1683938744::1683938748::1::::<><>::
+enemyWalking_1.png::CompressedTexture2D::2894687670211240060::1683938743::1683938748::1::::<><>::
+enemyWalking_2.png::CompressedTexture2D::5368576505663727146::1683938744::1683938748::1::::<><>::
+gameover.wav::AudioStreamWAV::2929416226598478662::1683938744::1683938748::1::::<><>::
+House In a Forest Loop.ogg::AudioStreamOggVorbis::6586184903556404906::1683938744::1683938748::1::::<><>::
+playerGrey_up1.png::CompressedTexture2D::4783233176207354252::1683938743::1683938748::1::::<><>::
+playerGrey_up2.png::CompressedTexture2D::4013324767883471249::1683938743::1683938748::1::::<><>::
+playerGrey_walk1.png::CompressedTexture2D::835168424523129228::1683938744::1683938748::1::::<><>::
+playerGrey_walk2.png::CompressedTexture2D::6660063944407074436::1683938744::1683938748::1::::<><>::
+::res://fonts/::1683938747
+FONTLOG.txt::TextFile::-1::1683938744::0::1::::<><>::
+LICENSE.txt::TextFile::-1::1683938744::0::1::::<><>::
+Xolonium-Regular.ttf::FontFile::5449150565013388258::1683938744::1683938747::1::::<><>::
