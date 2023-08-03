@@ -4,7 +4,7 @@
 using namespace std;
 
 
-// database
+// data
 struct produk {
     string nama;
     int no,harga,stock;
