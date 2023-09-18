@@ -1,0 +1,14 @@
+.mrs {
+    margin-top: 160px;
+}
+.wid {
+    width: 400px;
+
+}
+
+.cbox {
+    width: 400px;
+    max-height: 300px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}

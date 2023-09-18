@@ -1,0 +1,54 @@
+.search-click {
+    border: 1px solid #ccc;
+    outline: none;
+    background-size: 11px;
+    background-position: 13px;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    transition: all 0.5s;
+  }
+  .search-click:focus {
+    width: 300px;
+    padding-left: 50px;
+  }
+  .search-click {
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+  }
+  .search-click input {
+    background: transparent;
+    border: 1px solid #ccc;
+    outline: none;
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    left: 0%;
+    padding: 10px;
+  }
+
+  .nobrd {
+    border: black;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 20px;
+    height: 32px;
+    margin-left: 5px;
+    
+  }
+
+  .top {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .space{
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 40px;
+    height: 32px;    
+  }

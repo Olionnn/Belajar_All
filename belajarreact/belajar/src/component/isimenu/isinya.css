@@ -1,0 +1,16 @@
+.foto{
+    margin-left: 60px;
+}
+.nama {
+    margin-top: 5px;
+    margin-bottom: auto;
+    font-size: 16px;
+    padding-bottom: 0%;
+}
+
+.tanggal {
+    margin-top: -15px;
+    margin-bottom: auto;
+    font-size: 10px;
+    padding-bottom: 0%;
+}
