@@ -1,3 +1,3 @@
-module bljrgo
+module go/bljrgo
 
 go 1.21.0
