@@ -13,17 +13,17 @@ import java.util.Scanner;
  * 
  */
 
-    // List Masalah
-    //Syntax wilo, gedi cilik e huruf kan kerep eror e kan kdng i Ro looping
-    //Pemahaman syntax, looping/perulangan, package ( ap itu package,fungsi package, ngaruh nda misal ada ato ngga nya package)
-    //Banyak nya tipe data yg dapat memuat var berupa angka
-    //Tipe data double dan float, apa yg membedalan
-    //Fungsi serta dri variabel e
-    //Ap persamaan terhadap tipe data if else dan switch case, serta kondisi apa saja yg memungkinkan menggunakan tipe data tsb, lebih efisien penggunaan if else atau switch case?
-    // Penjelasan modul sih aku senk kureng i
-    //Harus memerhatikan Huruf Yang awalan e kapital
-    //banyakya tipe data
-    //opo penggunaan logika informatika senk angel di nalar
+// List Masalah
+//Syntax wilo, gedi cilik e huruf kan kerep eror e kan kdng i Ro looping
+//Pemahaman syntax, looping/perulangan, package ( ap itu package,fungsi package, ngaruh nda misal ada ato ngga nya package)
+//Banyak nya tipe data yg dapat memuat var berupa angka
+//Tipe data double dan float, apa yg membedalan
+//Fungsi serta dri variabel e
+//Ap persamaan terhadap tipe data if else dan switch case, serta kondisi apa saja yg memungkinkan menggunakan tipe data tsb, lebih efisien penggunaan if else atau switch case?
+// Penjelasan modul sih aku senk kureng i
+//Harus memerhatikan Huruf Yang awalan e kapital
+//banyakya tipe data
+//opo penggunaan logika informatika senk angel di nalar
 
 
 public class keluhan {
