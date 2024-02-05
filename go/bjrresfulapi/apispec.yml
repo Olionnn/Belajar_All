@@ -1,0 +1,175 @@
+openapi: '3.0.2'
+info:
+  title: Category Resful Api
+  version: '1.0'
+servers:
+  - url: http://localhost:3000/api
+
+
+
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
+  /categories:
+    get:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category Api"
+      summary: "Get all categories"
+      description: 'List all categories'
+      parameters: []
+      responses:
+        '200':
+          description: Success get all categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+    post:      
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category Api"
+      summary: "Create a new category"
+      description: 'Create a new category'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateCategory'
+      responses:
+        '200':
+          description: OK 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Category'
+  /categories/{categoryId}:
+    get:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category Api"
+      summary: "Get a category by id"
+      description: ''
+      parameters: [{
+        schema: {
+          type: number
+          },
+        required: true,
+        name: categoryId,
+        in: path,
+        description: 'Category id',
+        }]
+      responses:
+        '200':
+          description: Success get category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/Category'
+    put:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category Api"
+      summary: "Update a category by id"
+      description: 'update a category by id'
+      parameters: [{
+
+        schema: {
+          type: number
+          },
+        required: true,
+        name: categoryId,
+        in: path,
+        description: 'Category id',
+        }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateCategory'
+      responses:
+        '200':
+          description: OK
+    delete:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category Api"
+      summary: "Delete a category by id"
+      description: 'Delete a category'
+      parameters: [{
+        schema: {
+          type: number
+          },
+        required: true,
+        name: categoryId,
+        in: path,
+        description: 'Category id',
+        }]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  status:
+                    type: string
+      
+
+
+components:
+  securitySchemes:
+    CategoryAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: 'Autentication for category api'
+  schemas:
+    CreateOrUpdateCategory:
+      type: object
+      properties:
+        name:
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
