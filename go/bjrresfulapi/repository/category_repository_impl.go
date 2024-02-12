@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"bjrresfulapi/domain"
+	"bjrresfulapi/model/domain"
 	"context"
 	"database/sql"
 )
